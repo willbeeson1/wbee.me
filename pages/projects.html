@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Projects | wbee.me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link your CSS -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body>
+  <header>
+    <h1>Projects</h1>
+    <!-- Basic nav if you want, or link back to home, about, etc. -->
+    <nav>
+      <a href="../index.html">Home</a> |
+      <a href="./about.html">About</a> |
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main id="projects-container">
+    <!-- Projects will be dynamically inserted here via JS -->
+  </main>
+
+  <footer>
+    <p>© 2025 W. Beeson</p>
+  </footer>
+
+  <!-- Load your helpers + main scripts last -->
+  <script src="../scripts/helpers.js"></script>
+  <script>
+    // Or you could do this in main.js.
+    // Example of dynamic rendering directly in the HTML for clarity.
+    const container = document.getElementById("projects-container");
+    const allProjects = getAllProjects();  // from helpers.js
+
+    allProjects.forEach((project) => {
+      // Create a container div
+      const projectDiv = document.createElement("div");
+      projectDiv.classList.add("project-item");
+
+      // Title
+      const titleEl = document.createElement("h2");
+      titleEl.textContent = project.title;
+
+      // Description (contains HTML, so use innerHTML carefully)
+      const descEl = document.createElement("div");
+      descEl.innerHTML = project.description;
+
+      // Optional code snippet links
+      const codeList = document.createElement("ul");
+      project.codeSnippets.forEach(snippet => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = snippet.snippetUrl; // possibly link to GitHub gist
+        a.textContent = snippet.fileName;
+        li.appendChild(a);
+        codeList.appendChild(li);
+      });
+
+      // Append children
+      projectDiv.appendChild(titleEl);
+      projectDiv.appendChild(descEl);
+
+      if (project.codeSnippets.length > 0) {
+        const codeHeader = document.createElement("h4");
+        codeHeader.textContent = "Code Snippets:";
+        projectDiv.appendChild(codeHeader);
+        projectDiv.appendChild(codeList);
+      }
+
+      container.appendChild(projectDiv);
+    });
+  </script>
+</body>
+
+</html>
