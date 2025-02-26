@@ -21,8 +21,11 @@
     </nav>
   </header>
 
-  <main id="projects-container">
-    <!-- Projects will be dynamically inserted here via JS -->
+  <!-- ADDED: Provide a parent container around the dynamic items. -->
+  <main class="container">
+    <div id="projects-container">
+      <!-- Projects inserted here via JS -->
+    </div>
   </main>
 
   <footer>
@@ -32,46 +35,47 @@
   <!-- Load your helpers + main scripts last -->
   <script src="../scripts/helpers.js"></script>
   <script>
-    // Or you could do this in main.js.
-    // Example of dynamic rendering directly in the HTML for clarity.
     const container = document.getElementById("projects-container");
     const allProjects = getAllProjects();  // from helpers.js
 
     allProjects.forEach((project) => {
-      // Create a container div
       const projectDiv = document.createElement("div");
       projectDiv.classList.add("project-item");
+      // ADDED: a sub-container for text to keep consistent layout
+      const textBlock = document.createElement("div");
+      textBlock.classList.add("project-text");
 
-      // Title
       const titleEl = document.createElement("h2");
       titleEl.textContent = project.title;
 
-      // Description (contains HTML, so use innerHTML carefully)
+      // description can contain HTML, so use innerHTML carefully
       const descEl = document.createElement("div");
       descEl.innerHTML = project.description;
 
-      // Optional code snippet links
+      // code snippet list
       const codeList = document.createElement("ul");
       project.codeSnippets.forEach(snippet => {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = snippet.snippetUrl; // possibly link to GitHub gist
+        a.href = snippet.snippetUrl;
         a.textContent = snippet.fileName;
         li.appendChild(a);
         codeList.appendChild(li);
       });
 
-      // Append children
-      projectDiv.appendChild(titleEl);
-      projectDiv.appendChild(descEl);
-
+      // If there are code snippets, add heading
       if (project.codeSnippets.length > 0) {
         const codeHeader = document.createElement("h4");
         codeHeader.textContent = "Code Snippets:";
-        projectDiv.appendChild(codeHeader);
-        projectDiv.appendChild(codeList);
+        textBlock.appendChild(codeHeader);
+        textBlock.appendChild(codeList);
       }
 
+      // Append to the .project-text container
+      textBlock.appendChild(titleEl);
+      textBlock.appendChild(descEl);
+
+      projectDiv.appendChild(textBlock);
       container.appendChild(projectDiv);
     });
   </script>

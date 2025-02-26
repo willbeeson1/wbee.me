@@ -11,17 +11,44 @@
 </head>
 
 <body>
-    <h1>behold, a webpage</h1>
-
-    <!-- Add simple links to subpages -->
+    <!-- ADDED: Make nav at the top, not wrapped in body center flex. -->
     <nav>
         <a href="./pages/about.html">About</a> |
         <a href="./pages/projects.html">Projects</a> |
         <a href="./pages/contact.html">Contact</a>
     </nav>
 
+    <!-- CHANGED: Removed old 'header' placeholder. -->
+
+    <!-- CHANGED: Just a normal section with container, no forced parallax. -->
+    <section class="hero container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Will Beeson</h1>
+                <p>Senior CS + Engineering at Dartmouth. Passionate about AI, web dev, and big ideas.</p>
+                <button class="button button-accent">View My Projects</button>
+            </div>
+            <div class="hero-image">
+                <!-- ADDED: Use the 400x400 placeholder, plus "rounded-img" to style. -->
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg"
+                    alt="Will Beeson headshot" class="rounded-img" width="200" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ADDED: Dartmouth placeholder image block. -->
+    <section class="intro container">
+        <h2>Welcome!</h2>
+        <p>I’m a senior at Dartmouth majoring in Computer Science modified with Engineering. I love building real-world
+            applications that blend AI and software design. Explore my work or shoot me a message!</p>
+        <div class="homepage-image-wrap">
+            <img src="https://sites.dartmouth.edu/learning/files/2021/06/dartmouth-college_74.jpg"
+                alt="Dartmouth campus placeholder" class="rounded-img" />
+        </div>
+    </section>
+
     <footer>
-        <p>Adapted for CS52 at Dartmouth | Template: Claude (Anthropic, 2024) CC BY 4.0</p>
+        <p>© 2025 W. Beeson</p>
     </footer>
 </body>
 
