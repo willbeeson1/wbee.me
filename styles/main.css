@@ -133,7 +133,7 @@ footer {
   margin: 0 auto;
   /* Typically left-align text inside containers: */
   text-align: left;
-  /* CHANGED from 'left' in earlier snippet */
+  /* CHANGED from 'center' in earlier snippet */
   padding: 2rem 0;
   /* some vertical spacing */
 }
