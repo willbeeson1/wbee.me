@@ -63,6 +63,10 @@
         codeList.appendChild(li);
       });
 
+      // Append title and description first
+      textBlock.appendChild(titleEl);
+      textBlock.appendChild(descEl);
+
       // If there are code snippets, add heading
       if (project.codeSnippets.length > 0) {
         const codeHeader = document.createElement("h4");
@@ -71,9 +75,6 @@
         textBlock.appendChild(codeList);
       }
 
-      // Append to the .project-text container
-      textBlock.appendChild(titleEl);
-      textBlock.appendChild(descEl);
 
       projectDiv.appendChild(textBlock);
       container.appendChild(projectDiv);
