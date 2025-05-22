@@ -52,23 +52,22 @@
       const descEl = document.createElement("div");
       descEl.innerHTML = project.description;
 
-      // code snippet list
-      const codeList = document.createElement("ul");
-      project.codeSnippets.forEach(snippet => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = snippet.snippetUrl;
-        a.textContent = snippet.fileName;
-        li.appendChild(a);
-        codeList.appendChild(li);
-      });
-
       // Append title and description first
       textBlock.appendChild(titleEl);
       textBlock.appendChild(descEl);
 
-      // If there are code snippets, add heading
+      // code snippet list
       if (project.codeSnippets.length > 0) {
+        const codeList = document.createElement("ul");
+        project.codeSnippets.forEach((snippet) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = snippet.snippetUrl;
+          a.textContent = snippet.fileName;
+          li.appendChild(a);
+          codeList.appendChild(li);
+        });
+
         const codeHeader = document.createElement("h4");
         codeHeader.textContent = "Code Snippets:";
         textBlock.appendChild(codeHeader);
