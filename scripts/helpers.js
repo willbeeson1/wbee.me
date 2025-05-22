@@ -68,5 +68,11 @@ function getProjectById(id) {
 }
 
 // Export (if you use ES modules). Or just keep them in global scope.
-window.getAllProjects = getAllProjects;
-window.getProjectById = getProjectById;
+if (typeof window !== 'undefined') {
+  window.getAllProjects = getAllProjects;
+  window.getProjectById = getProjectById;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { getAllProjects, getProjectById };
+}
