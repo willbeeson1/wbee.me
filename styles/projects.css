@@ -1,0 +1,112 @@
+/*
+ * Styles for the Projects Gallery and Project Detail pages.
+ */
+
+/* Allow vertical scrolling on pages with more content */
+body.overflow-y-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* --- Project Card Styling (projects.html) --- */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  /* 12px */
+  padding: 1.5rem;
+  /* 24px */
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.tech-tag {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #a1a1aa;
+  /* zinc-400 */
+  font-size: 0.75rem;
+  /* 12px */
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+
+/* --- Project Detail Page Styling (ukraine-project.html) --- */
+.project-detail .prose {
+  color: #d4d4d8;
+  /* zinc-300 */
+  max-width: 100%;
+}
+
+.project-detail .prose h2 {
+  color: #ffffff;
+  font-size: 1.875rem;
+  /* 30px */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-detail .prose h3 {
+  color: #f4f4f5;
+  /* zinc-100 */
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.project-detail .prose p {
+  line-height: 1.75;
+}
+
+.project-detail .prose a {
+  color: #60a5fa;
+  /* blue-400 */
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.project-detail .prose a:hover {
+  color: #93c5fd;
+  /* blue-300 */
+}
+
+/* Chart Container Styling */
+.chart-container {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+/* Code Block Styling */
+.code-block {
+  background-color: #282c34;
+  /* atom-one-dark background */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-block pre {
+  margin: 0;
+}
+
+.code-block code.hljs {
+  background: transparent;
+  padding: 0;
+}

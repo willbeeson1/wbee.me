@@ -9,115 +9,14 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #e5e7eb;
-            overflow: hidden;
-        }
+    <!-- Link to your main stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
 
-        /* canvas for the particle animation */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.5;
-            /* Soften the background effect */
-        }
-
-        /* Ensure all content is on top of canvas */
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Subtle animation for text fade-in on load */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-            /* Start hidden for animation */
-        }
-
-        /* Staggered animation delays */
-        .fade-in-1 {
-            animation-delay: 0.2s;
-        }
-
-        .fade-in-2 {
-            animation-delay: 0.4s;
-        }
-
-        .fade-in-3 {
-            animation-delay: 0.6s;
-        }
-
-        .fade-in-4 {
-            animation-delay: 0.8s;
-        }
-
-        /* Styling for the primary CTA button */
-        .cta-button {
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-        }
-
-        /* Styling for nav and footer links */
-        .nav-link {
-            transition: color 0.3s ease;
-            position: relative;
-            color: #a1a1aa;
-            /* zinc-400 */
-        }
-
-        .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -4px;
-            left: 0;
-            background-color: #ffffff;
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        .nav-link:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-    </style>
 </head>
 
 <body class="antialiased">
@@ -127,14 +26,11 @@
     <!-- Main content wrapper -->
     <div class="content-wrapper flex flex-col min-h-screen p-6 md:p-8">
 
-        <!-- 
-          Header: Minimal navigation focused on the core "Spike" (Thesis)
-          and "Proof of Work" (Projects).
-        -->
+        <!-- Header -->
         <header class="w-full max-w-6xl mx-auto">
             <nav class="flex justify-between items-center py-4">
                 <div class="text-lg font-bold tracking-wider fade-in fade-in-1">
-                    <a href="#" class="nav-link text-white">WB</a>
+                    <a href="/" class="nav-link text-white">WB</a>
                 </div>
                 <div class="flex items-center space-x-6 md:space-x-8 text-sm fade-in fade-in-1">
                     <a href="/pages/thesis.html" class="nav-link">Thesis</a>
@@ -161,7 +57,7 @@
             </div>
         </main>
 
-        <!-- Footer with Social Links -->
+        <!-- Footer -->
         <footer class="w-full max-w-6xl mx-auto">
             <div class="flex justify-center items-center space-x-6 py-4 text-gray-500 fade-in fade-in-4">
                 <a href="#" class="nav-link" aria-label="LinkedIn">
@@ -186,88 +82,8 @@
         </footer>
     </div>
 
-    <script>
-        // --- Particle Animation Script ---
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        const particleCount = 70; // Adjust for density
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() * 0.4 - 0.2); // Slow movement
-                this.speedY = (Math.random() * 0.4 - 0.2);
-                this.color = 'rgba(100, 100, 100, 0.5)';
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-        initParticles();
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 120) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(100, 100, 100, ${1 - distance / 120})`;
-                        ctx.lineWidth = 0.2;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        window.onload = function () {
-            animate();
-        }
-    </script>
+    <!-- Link to your new external animation script -->
+    <script src="../scripts/main.js"></script>
 </body>
 
 </html>
