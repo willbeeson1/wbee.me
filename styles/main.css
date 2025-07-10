@@ -1,274 +1,109 @@
-/* main.css
-   (Main layout, spacing, and component styles)
+/*
+ * Silent Citadel
 */
-
-/* 1) Basic Reset or Box-Sizing (Optional) */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* 2) Remove forced 100vh (CHANGED: was forcing center alignment). */
-/* OLD:
-   body {
-     height: 100vh;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
-   }
-*/
-/* ADDED: Let body expand. Keep black background from theme.css. */
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /* text-align: left; // We'll set container text alignment if needed */
-  font-size: 16px;
-  /* slightly bigger by default */
-}
-
-/* 3) Nav Bar
-   We’ll keep your underline effect but let nav float at top. */
-nav {
-  width: 100%;
-  text-align: center;
-  padding: 1rem 0;
-  /* optional background or not */
-}
-
-/* Keep your existing nav link underline code */
-nav a {
-  margin: 0 1rem;
-  color: var(--text-color);
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background-color: var(--accent-color);
-  transition: width 0.3s ease;
-  transform-origin: left center;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-/* 4) Footer (no longer fixed)
-   If you want it pinned, keep the old 'position: fixed'.
-   But let's unpin so content can grow (CHANGED). */
-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  padding: 1rem 0;
-  margin-top: auto;
-}
-
-/* 5) Buttons
-   Keeping your underline animation from before. */
-.button {
-  position: relative;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--accent-color);
-  background: transparent;
-  color: var(--text-color);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.3s ease, border-color 0.3s ease;
-  text-transform: none;
+  font-family: 'Inter', sans-serif;
+  background-color: #0a0a0a;
+  /* A very dark gray, almost black */
+  color: #e5e7eb;
+  /* Light gray for text */
   overflow: hidden;
+  /* Hide scrollbars from the body */
 }
 
-.button::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
+/* The canvas for the particle animation */
+#particle-canvas {
+  position: fixed;
+  top: 0;
   left: 0;
-  height: 2px;
-  width: 0%;
-  background-color: var(--accent-color);
-  transition: width 0.3s ease;
-  transform-origin: left center;
-}
-
-.button:hover::after {
   width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.5;
+  /* Soften the background effect */
 }
 
-.button:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+/* Ensure all content is on top of the canvas */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
 }
 
-/* Filled accent variant */
-.button-accent {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--background-color);
+/* Subtle animation for text fade-in on load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.button-accent:hover {
-  background-color: #fff;
-  border-color: #fff;
-  color: #000;
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+  /* Start hidden for animation */
 }
 
-/* 6) Container Utility */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* Typically left-align text inside containers: */
-  text-align: left;
-  /* CHANGED from 'left' in earlier snippet */
-  padding: 2rem 0;
-  /* some vertical spacing */
+/* Staggered animation delays */
+.fade-in-1 {
+  animation-delay: 0.2s;
 }
 
-/* 7) Hero Section Enhancements */
-.hero-content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+.fade-in-2 {
+  animation-delay: 0.4s;
 }
 
-.hero-text {
-  flex: 1;
-  margin-right: 2rem;
+.fade-in-3 {
+  animation-delay: 0.6s;
 }
 
-.hero-text h1 {
-  font-size: 3rem;
-  /* bit smaller than 4rem so it fits well */
-  margin-bottom: 0.5rem;
+.fade-in-4 {
+  animation-delay: 0.8s;
 }
 
-.hero-text p {
-  font-size: 1.2rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
+/* Styling for the primary CTA button */
+.cta-button {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
 }
 
-.hero-image {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
+.cta-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
 }
 
-/* 8) Rounded Image Class (for placeholders) */
-.rounded-img {
-  border-radius: 12px;
-  /* or 50% if you want a perfect circle */
-  object-fit: cover;
-  /* maintain aspect ratio */
-  /* max-width or width can be set in HTML or here */
+/* Styling for nav and footer links */
+.nav-link {
+  transition: color 0.3s ease;
+  position: relative;
+  color: #a1a1aa;
+  /* zinc-400 */
 }
 
-/* 9) Additional block for homepage intro image */
-.homepage-image-wrap {
-  margin-top: 1.5rem;
-  text-align: center;
-  /* center the image in the container */
-}
-
-.homepage-image-wrap img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-/* 10) Projects Page: .project-item */
-.project-item {
-  background: rgba(255, 255, 255, 0.05);
-  /* a subtle overlay on black */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-}
-
-.project-item h2 {
-  margin-top: 0;
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-}
-
-.project-text p {
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.project-text ul {
-  margin-left: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.project-text li {
-  list-style-type: disc;
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-/* 11) Tag styling (for "Key Concepts", "Languages", "Tags") */
-/* If you want to transform them into small "chips," we can do something like: */
-.tag {
-  display: inline-block;
-  background: #333333;
+.nav-link:hover {
   color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 20px;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
 }
 
-.tag:hover {
-  background: #444444;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: #ffffff;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
 }
 
-/* If you want to group them, we can do .tags-container. 
-   For example, you can manually put <div class="tags-container"> around your <span class="tag"> elements 
-   in the project descriptions. 
-   Or parse it in your JS.
-*/
-
-/* 12) Media Queries for Responsiveness (Optional) */
-@media screen and (max-width: 768px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero-text {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-
-  .hero-image {
-    margin-bottom: 1rem;
-  }
-
-  .hero-text h1 {
-    font-size: 2.2rem;
-  }
-
-  nav {
-    padding: 1rem;
-  }
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
