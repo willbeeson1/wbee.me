@@ -23,14 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     const config = {
-        STAR_COUNT: window.innerWidth < 768 ? 400 : 800,
-        GALAXY_STAR_COUNT: 1500,
-        COMET_SPAWN_INTERVAL: 20000, // ms
+        STAR_COUNT: (window.innerWidth < 768 ? 560 : 1120) * 5, // Increased star count 
+        COMET_SPAWN_INTERVAL: 10000, // ms
         WARP_SPEED_FACTOR: 15,
-        MOUSE_PAN_FACTOR: 20, // Increased from 15 to reduce sensitivity
+        MOUSE_PAN_FACTOR: 100, // Inverse; increase for less panning
     };
 
-    let stars = [], galaxy = [], comets = [];
+    let stars = [], comets = [];
     let lastCometSpawn = 0;
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2, isDown: false };
     let warpSpeed = 1;
@@ -74,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     class Star extends CelestialObject {
         constructor() {
             super(random(-canvas.width, canvas.width), random(-canvas.height, canvas.height), random(1, canvas.width));
-            this.radius = Math.max(0.1, (1 - this.pos.z / canvas.width) * 1.5);
-            this.alpha = random(0.3, 1);
+            this.radius = Math.max(0.1, (1 - this.pos.z / canvas.width) * 1.8); // Increased size by 20%
+            this.alpha = random(0.5, 1); // Increased brightness
             this.twinkleSpeed = random(0.01, 0.03);
             this.twinkle = random(0, Math.PI * 2);
             this.color = `rgba(255, 255, 255, ${this.alpha})`;
@@ -110,38 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.lineTo(prevX, prevY);
                 ctx.stroke();
             }
-        }
-    }
-
-    // --- Galaxy Class (for distant dust lane) ---
-    class GalaxyStar extends CelestialObject {
-        constructor() {
-            const angle = random(0, Math.PI * 2);
-            const radius = random(0, canvas.width * 2) * Math.pow(random(0, 1), 2);
-            super(Math.cos(angle) * radius, random(-50, 50), Math.sin(angle) * radius);
-            this.radius = 0.5;
-            this.alpha = random(0.05, 0.2);
-            this.color = `rgba(200, 220, 255, ${this.alpha})`;
-        }
-
-        update() {
-            // Slow rotation
-            const rotSpeed = 0.00005;
-            const cos = Math.cos(rotSpeed);
-            const sin = Math.sin(rotSpeed);
-            const newX = this.pos.x * cos - this.pos.z * sin;
-            const newZ = this.pos.x * sin + this.pos.z * cos;
-            this.pos.x = newX;
-            this.pos.z = newZ;
-        }
-
-        draw() {
-            const { x, y, scale } = this.project();
-            if (x < 0 || x > canvas.width || y < 0 || y > canvas.height || scale <= 0) return;
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(x, y, this.radius * scale, 0, Math.PI * 2);
-            ctx.fill();
         }
     }
 
@@ -214,10 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Main Initialization Function ---
     function init() {
         stars = [];
-        galaxy = [];
         comets = [];
         for (let i = 0; i < config.STAR_COUNT; i++) stars.push(new Star());
-        for (let i = 0; i < config.GALAXY_STAR_COUNT; i++) galaxy.push(new GalaxyStar());
     }
 
     // --- Main Animation Loop ---
@@ -238,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.translate(-currentPanX, -currentPanY);
 
         // Update and draw all objects
-        galaxy.forEach(g => { g.update(); g.draw(); });
         stars.forEach(s => { s.update(); s.draw(); });
         comets.forEach(c => { c.update(); c.draw(); });
         
@@ -258,4 +222,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     resizeCanvas();
     requestAnimationFrame(animate);
+
+    /// --- 2. VIVUS SVG ANIMATION ---
+    // This uses the Vivus library to load and animate your external SVG file.
+    new Vivus('avatar-container', {
+        type: 'oneByOne',        // Draws each path sequentially for a "live sketch" feel.
+        duration: 300,           // Total animation duration in frames.
+        file: 'assets/images/profile.svg', // The path to your corrected SVG file.
+        start: 'autostart',      // Start the animation automatically on page load.
+        onReady: function (myVivus) {
+          // This function runs once the SVG is loaded.
+          // It makes the SVG responsive by removing fixed dimensions.
+          const svg = myVivus.el;
+          svg.setAttribute('class', 'w-full max-w-sm'); // Apply TailwindCSS classes for sizing.
+          svg.removeAttribute('width');
+          svg.removeAttribute('height');
+        }
+    });
 });

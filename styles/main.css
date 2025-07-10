@@ -1,17 +1,13 @@
 /*
- * Silent Citadel
+ * Silent Citadel - Main Stylesheet
 */
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0a0a0a;
-  /* A very dark gray, almost black */
+  background-color: #000;
   color: #e5e7eb;
-  /* Light gray for text */
   overflow: hidden;
-  /* Hide scrollbars from the body */
 }
 
-/* The canvas for the particle animation */
 #particle-canvas {
   position: fixed;
   top: 0;
@@ -19,21 +15,37 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.5;
-  /* Soften the background effect */
 }
 
-/* Ensure all content is on top of the canvas */
 .content-wrapper {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem;
 }
 
-/* Subtle animation for text fade-in on load */
+header,
+main,
+footer {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* --- Animations --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
 
   to {
@@ -43,60 +55,49 @@ body {
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1.5s ease-out forwards;
   opacity: 0;
-  /* Start hidden for animation */
+  /* Start hidden */
 }
 
-/* Staggered animation delays */
-.fade-in-1 {
-  animation-delay: 0.2s;
+/* --- SVG Sketch Animation --- */
+#avatar-container svg {
+  width: 100%;
+  max-width: 24rem;
+  max-height: 30rem;
+  /* 384px */
 }
 
-.fade-in-2 {
-  animation-delay: 0.4s;
+/* The keyframes are universal, the dynamic part is handled by JS */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-.fade-in-3 {
-  animation-delay: 0.6s;
-}
-
-.fade-in-4 {
-  animation-delay: 0.8s;
-}
-
-/* Styling for the primary CTA button */
-.cta-button {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-}
-
-.cta-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.7);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-}
-
-/* Styling for nav and footer links */
+/* --- Link & Button Styling --- */
 .nav-link {
-  transition: color 0.3s ease;
-  position: relative;
   color: #a1a1aa;
   /* zinc-400 */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+  /* Add padding for the underline effect */
 }
 
 .nav-link:hover {
   color: #ffffff;
 }
 
+/* Underline effect for nav links */
 .nav-link::after {
   content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
   height: 1px;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   background-color: #ffffff;
   transform-origin: bottom right;
@@ -107,3 +108,8 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+/* Remove underline from icon-only links in the footer
+footer .nav-link::after {
+  display: none;
+} */

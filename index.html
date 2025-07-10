@@ -4,62 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Beeson</title>
+    <title>Will Beeson</title>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (for utility classes) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Link to your main stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
 
+    <!-- Add Vivus -->
+    <script src="https://cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js"></script>
+
 </head>
 
-<body class="antialiased">
-    <!-- Canvas for particle animation -->
+<body>
+
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Main content wrapper -->
-    <div class="content-wrapper flex flex-col min-h-screen p-6 md:p-8">
-
-        <!-- Header -->
-        <header class="w-full max-w-6xl mx-auto">
+    <div class="content-wrapper">
+        <header>
             <nav class="flex justify-between items-center py-4">
-                <div class="text-lg font-bold tracking-wider fade-in fade-in-1">
-                    <a href="/" class="nav-link text-white">WB</a>
-                </div>
-                <div class="flex items-center space-x-6 md:space-x-8 text-sm fade-in fade-in-1">
+                <a href="/" class="nav-link text-white font-bold text-lg">WB</a>
+                <div class="flex items-center space-x-8 text-sm">
                     <a href="/pages/thesis.html" class="nav-link">Thesis</a>
                     <a href="/pages/projects.html" class="nav-link">Projects</a>
                 </div>
             </nav>
         </header>
 
-        <!-- Main Hero Section -->
-        <main class="flex-grow flex items-center justify-center text-center">
-            <div class="max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4 fade-in fade-in-2">
-                    William Beeson
-                </h1>
-                <p class="text-lg md:text-xl text-gray-400 mb-8 fade-in fade-in-3">
-                    At the intersection of technology and capital in human augmentation.
-                </p>
-                <div class="fade-in fade-in-4">
-                    <a href="/pages/thesis.html"
-                        class="cta-button inline-block bg-transparent text-white font-medium py-3 px-8 rounded-lg">
-                        Explore the Thesis
-                    </a>
+        <main>
+            <div class="grid md:grid-cols-2 gap-8 items-center w-full">
+
+                <!-- Left Column: Text Content -->
+                <div class="fade-in text-left">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                        A pragmatic futurist exploring the frontier of human augmentation.
+                    </h1>
+                    <p class="text-base md:text-lg text-gray-400 mb-8">
+                        Will Beeson. Computer Science at Dartmouth College, incoming Technology Investment Banking
+                        Analyst at UBS. This site serves as a repository for independent research and technical
+                        projects.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 font-medium">
+                        <a href="/pages/thesis.html" class="nav-link text-white">Explore the Thesis &rarr;</a>
+                        <a href="/pages/projects.html" class="nav-link text-white">View Projects &rarr;</a>
+                    </div>
                 </div>
+
+                <!-- Right Column: SVG Avatar Container -->
+                <div id="avatar-container" class="flex justify-center items-center">
+                    <!-- Vivus.js will draw the SVG here -->
+                </div>
+
             </div>
         </main>
 
-        <!-- Footer -->
-        <footer class="w-full max-w-6xl mx-auto">
-            <div class="flex justify-center items-center space-x-6 py-4 text-gray-500 fade-in fade-in-4">
+        <footer class="mt-auto pt-16">
+            <div class="flex justify-center items-center space-x-6 py-4 text-gray-500 fade-in">
                 <a href="#" class="nav-link" aria-label="LinkedIn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -82,8 +88,8 @@
         </footer>
     </div>
 
-    <!-- Link to your new external animation script -->
-    <script src="../scripts/main.js"></script>
+    <!-- Main animation script -->
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>

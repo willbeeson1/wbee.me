@@ -2,12 +2,6 @@
  * Styles for the Projects Gallery and Project Detail pages.
  */
 
-/* Allow vertical scrolling on pages with more content */
-body.overflow-y-auto {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 /* --- Project Card Styling (projects.html) --- */
 .project-card {
   display: flex;
@@ -43,6 +37,25 @@ body.overflow-y-auto {
 
 
 /* --- Project Detail Page Styling (ukraine-project.html) --- */
+
+/* Override main.css styles for project pages */
+/* Ensure scrolling works on project pages */
+body.overflow-y-auto {
+  overflow: auto !important;
+}
+
+/* Override flexbox centering for project pages */
+body.overflow-y-auto .content-wrapper {
+  align-items: stretch;
+}
+
+body.overflow-y-auto main {
+  /* Keep as flex container but change direction and alignment for normal document flow */
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+}
+
 .project-detail .prose {
   color: #d4d4d8;
   /* zinc-300 */
