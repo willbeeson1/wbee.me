@@ -41,23 +41,25 @@
             <div class="grid md:grid-cols-2 gap-8 items-center w-full">
 
                 <!-- Left Column: Text Content -->
-                <div class="fade-in text-left">
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                <div class="fade-in order-last md:order-first">
+                    <h1
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-center md:text-left">
                         Will Beeson
                     </h1>
-                    <p class="text-base md:text-lg text-gray-400 mb-8">
+                    <p class="text-base md:text-lg text-gray-400 mb-8 text-center md:text-left">
                         Dartmouth Computer Science graduate & Tech Investment Banking Analyst at UBS. This page is a
                         collection of my
                         personal projects and thoughts on tech, finance, biology and more.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-6 font-medium">
+                    <div class="flex flex-col sm:flex-row gap-6 font-medium justify-center md:justify-start">
                         <a href="/pages/thesis.html" class="nav-link text-white">Explore the Thesis &rarr;</a>
                         <a href="/pages/projects.html" class="nav-link text-white">View Projects &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Right Column: SVG Avatar Container -->
-                <div id="avatar-container" class="flex justify-center items-center">
+                <div id="avatar-container"
+                    class="flex justify-center items-center order-first md:order-last mb-8 md:mb-0">
                     <!-- Vivus.js will draw the SVG here -->
                 </div>
 

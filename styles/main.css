@@ -113,3 +113,25 @@ main {
 footer .nav-link::after {
   display: none;
 } */
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    /* Enable vertical scrolling on mobile */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+  }
+
+  /* Stop centering content vertically on mobile, allow it to flow from the top */
+  main {
+    align-items: flex-start;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .content-wrapper {
+    padding: 1.5rem 1rem;
+    /* Adjust padding for smaller screens */
+  }
+}
