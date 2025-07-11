@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Vivus('avatar-container', {
         type: 'oneByOne',        // Draws each path sequentially for a "live sketch" feel.
         duration: 300,           // Total animation duration in frames.
-        file: 'assets/images/profile.svg', // The path to your corrected SVG file.
+        file: 'assets/images/profile-sketch.svg', // The path to your corrected SVG file.
         start: 'autostart',      // Start the animation automatically on page load.
         onReady: function (myVivus) {
           // This function runs once the SVG is loaded.
