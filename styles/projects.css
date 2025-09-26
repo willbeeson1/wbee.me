@@ -123,3 +123,247 @@ body.overflow-y-auto main {
   background: transparent;
   padding: 0;
 }
+
+/* --- Resume Page Styling --- */
+
+/* Resume Cards */
+.resume-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Titles */
+.section-title {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Resume Entries */
+.resume-entry {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resume-entry:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Entry Titles and Subtitles */
+.entry-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.entry-subtitle {
+  color: #a1a1aa;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.entry-date {
+  color: #60a5fa;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+/* Entry Details */
+.entry-details {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+.entry-details p {
+  margin-bottom: 0.5rem;
+}
+
+.entry-details p:last-child {
+  margin-bottom: 0;
+}
+
+/* Bullet Points */
+.entry-bullets {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.entry-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.entry-bullets li:before {
+  content: "●";
+  color: #60a5fa;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.entry-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+/* Institution Logos */
+.institution-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: #ffffff;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.institution-logo:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.institution-logo svg,
+.institution-logo img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Specific logo styling */
+.dartmouth-logo {
+  background: linear-gradient(135deg, rgba(0, 68, 127, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+.lse-logo {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+.ubs-logo {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+.db-logo {
+  background: linear-gradient(135deg, rgba(0, 100, 200, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+.hps-logo {
+  background: linear-gradient(135deg, rgba(128, 0, 128, 0.3), rgba(255, 255, 255, 0.1));
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.skill-category {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.skill-title {
+  color: #60a5fa;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.skill-content {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resume-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .entry-title {
+    font-size: 1.1rem;
+  }
+  
+  .entry-date {
+    font-size: 0.85rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .institution-logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .institution-logo svg,
+  .institution-logo img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .entry-bullets li {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-card {
+    padding: 1.25rem;
+  }
+  
+  .entry-bullets li {
+    font-size: 0.9rem;
+  }
+}
